@@ -1,0 +1,4 @@
+opam-version: "2.0"
+browse: "https://shamm.as/pkg/"
+upstream: "https://github.com/georgyo/opam-repository/tree/master/"
+announce: [ ]
