@@ -10,7 +10,7 @@
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
-    ocaml-flambda = { url = "github:ocaml-flambda/flambda-backend/4.14.1-11"; flake = false; };
+    ocaml-flambda = { url = "github:ocaml-flambda/flambda-backend/4.14.1-13"; flake = false; };
     opam-default = { url = "github:ocaml/opam-repository"; flake = false; };
     opam-beta = { url = "github:ocaml/ocaml-beta-repository"; flake = false; };
     opam-jane = { url = "github:janestreet/opam-repository"; flake = false; };
@@ -26,7 +26,7 @@
           ocaml = prev.stdenv.mkDerivation
             {
               name = "ocaml";
-              version = "4.14.1-jst11";
+              version = "4.14.1-jst12";
               src = inputs.ocaml-flambda;
               strictDeps = true;
               nativeBuildInputs = with prev; [ which rsync autoreconfHook automake final.ocamlPackages_old.ocaml final.ocamlPackages_old.dune_3 ];
@@ -63,7 +63,7 @@
           ## You can force versions of certain packages here, e.g:
           ## - force the ocaml compiler to be taken from opam-repository:
           # ocaml-base-compiler = "*";
-          ocaml-base-compiler = "4.14.0";
+          ocaml-base-compiler = "4.14.1";
           ## - or force the compiler to be taken from nixpkgs and be a certain version:
           # ocaml-system = "4.14.1";
           ## - or force ocamlfind to be a certain version:
@@ -74,11 +74,11 @@
           {
             repos = with inputs; [
               opam-default
-              ./opam-repository
-              opam-beta
+              # ./opam-repository
+              # opam-beta
               # opam-jane
               # opam-jane-external
-              # opam-dune-universe
+              opam-dune-universe
             ];
           } ./.
           query;
