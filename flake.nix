@@ -16,6 +16,7 @@
     opam-jane = { url = "github:janestreet/opam-repository"; flake = false; };
     opam-jane-external = { url = "github:janestreet/opam-repository/external-packages"; flake = false; };
     opam-dune-universe = { url = "github:dune-universe/opam-overlays"; flake = false; };
+    vpnkit-src = {url = "git+https://github.com/moby/vpnkit?submodules=1"; flake = false; };
   };
   outputs = { self, flake-utils, opam-nix, nixpkgs, ... }@inputs:
     let
@@ -23,7 +24,7 @@
         ocaml = final.ocamlPackages.ocaml;
         ocamlPackages_old = prev.ocamlPackages;
         ocamlPackages = prev.ocamlPackages.overrideScope' (ofinal: oprev: {
-          ocaml = prev.stdenv.mkDerivation
+          ocaml-jst = prev.stdenv.mkDerivation
             {
               name = "ocaml";
               version = "4.14.1-jst12";
@@ -54,6 +55,9 @@
         on = opam-nix.lib.${system};
         localPackagesQuery = builtins.mapAttrs (_: pkgs.lib.last)
           (on.listRepo (on.makeOpamRepo ./.));
+        vpnkitPackageQuery = builtins.mapAttrs (_: pkgs.lib.last)
+          (on.listRepo inputs.vpnkit-src);
+
         devPackagesQuery = {
           # You can add "development" packages here. They will get added to the devShell automatically.
           ocaml-lsp-server = "*";
@@ -75,13 +79,26 @@
             repos = with inputs; [
               opam-default
               # ./opam-repository
-              # opam-beta
+              opam-beta
               # opam-jane
               # opam-jane-external
               opam-dune-universe
             ];
           } ./.
           query;
+        vpnkitScope = on.buildOpamProject'
+          {
+            repos = with inputs; [
+              opam-default
+              # ./opam-repository
+              opam-beta
+              # opam-jane
+              # opam-jane-external
+              opam-dune-universe
+            ];
+          } inputs.vpnkit-src
+          query;
+
         overlay = final: prev:
           {
             ocaml-base-compiler = prev.ocaml-base-compiler.overrideAttrs (oa: { nativeBuildInputs = oa.nativeBuildInputs ++ (with pkgs; [ autoconf libtool which rsync automake dune_3 ocaml ]); });
@@ -95,11 +112,12 @@
           pkgs.lib.getAttrs (builtins.attrNames localPackagesQuery) scope';
       in
       {
-        legacyPackages = scope';
+        legacyPackages = vpnkitScope;
 
         packages = packages // {
           ocaml = pkgs.ocaml;
-          ocamlPackages = pkgs.ocamlPackages;
+          # ocamlPackages = pkgs.ocamlPackages;
+          vpnkit = vpnkitScope.vpnkit;
         };
         overlay = [
           (final: prev:

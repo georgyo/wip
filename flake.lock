@@ -69,11 +69,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1685655444,
-        "narHash": "sha256-6EujQNAeaUkWvpEZZcVF8qSfQrNVWFNNGbUJxv/A5a8=",
+        "lastModified": 1686020360,
+        "narHash": "sha256-Wee7lIlZ6DIZHHLiNxU5KdYZQl0iprENXa/czzI6Cj4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e635192892f5abbc2289eaac3a73cdb249abaefd",
+        "rev": "4729ffac6fd12e26e5a8de002781ffc49b0e94b7",
         "type": "github"
       },
       "original": {
@@ -119,11 +119,11 @@
     "opam-default": {
       "flake": false,
       "locked": {
-        "lastModified": 1685807071,
-        "narHash": "sha256-ocbZBd5tv3Fss29C1POg1Lo1TmntEfCFo6DjAsVYhmc=",
+        "lastModified": 1686149231,
+        "narHash": "sha256-cgelQb0pRUDsMJienO/zbSfyM3HSRjzZcpbtb2nrx14=",
         "owner": "ocaml",
         "repo": "opam-repository",
-        "rev": "a4371397b605147705353056da2bdf8efb459bdb",
+        "rev": "2b3ca0dd0fbff0fe7fd546edb8a8bceb677867c5",
         "type": "github"
       },
       "original": {
@@ -135,11 +135,11 @@
     "opam-dune-universe": {
       "flake": false,
       "locked": {
-        "lastModified": 1685007198,
-        "narHash": "sha256-e1gmcV68YJcHAtdfPkf6s4JxhtCSnIli8goUWVSIsvY=",
+        "lastModified": 1685947985,
+        "narHash": "sha256-xgulC9EzHboLY2uZpddLlI0Ry109JcCm963CUDxjH8E=",
         "owner": "dune-universe",
         "repo": "opam-overlays",
-        "rev": "fcccfb1a2f5727fbc5399ed835a3d5024549252a",
+        "rev": "83090616ad43e89dc339a1689d27463f4c0dff32",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
         "opam2json": "opam2json"
       },
       "locked": {
-        "lastModified": 1682411044,
-        "narHash": "sha256-HJY+LANQ75YQSfaTCOnmtiF4pF8d9Eb4dz+wLyNAihE=",
+        "lastModified": 1686057693,
+        "narHash": "sha256-OKtqYyNe4+4g38EpMgKw69tmgxs03Aa3gEVN8+pv0K8=",
         "owner": "tweag",
         "repo": "opam-nix",
-        "rev": "02f7ae28a210e17ca5811b0a4c116acd94e82faa",
+        "rev": "3f805fa7d0a65257720f7f3dd4dd2de3c2f113e0",
         "type": "github"
       },
       "original": {
@@ -271,7 +271,8 @@
         "opam-jane": "opam-jane",
         "opam-jane-external": "opam-jane-external",
         "opam-nix": "opam-nix",
-        "systems": "systems"
+        "systems": "systems",
+        "vpnkit-src": "vpnkit-src"
       }
     },
     "systems": {
@@ -287,6 +288,24 @@
         "owner": "nix-systems",
         "repo": "x86_64-linux",
         "type": "github"
+      }
+    },
+    "vpnkit-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683914268,
+        "narHash": "sha256-KJBH3ahW1VhU1Aow5P9KNC0r5sP+ozqLKVEgsuNjmxQ=",
+        "ref": "refs/heads/master",
+        "rev": "dc331cb22850be0cdd97c84a9cfecaf44a1afb6e",
+        "revCount": 2336,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/moby/vpnkit"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/moby/vpnkit"
       }
     }
   },
